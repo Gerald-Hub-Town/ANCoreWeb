@@ -24,13 +24,38 @@
         <div v-else>
             要努力了哦
         </div>
+        <p v-show="score<60">成绩为{{score}}:不及格了！</p>
+        <p v-show="score>=60">成绩为{{score}}:及格了！</p>
+        <h2>解决问题途径</h2>
+        <ol>
+            <li v-for="method in methods">
+                {{method.name}}
+            </li>
+        </ol>
+        <p v-bind:class="{active:isActive}" style="color:red">{{message}}</p>
+        <p class="active">您点击了{{counter}}次</p>
+        <button v-on:click="addCounter">请点击我试一试</button>
+        <button @click="addCounter">请点击我也试一试</button>
     </div>
     <script>
         let v = new Vue({
             el: "#apppjsoj",
             data: {
                 message: 'HelloWorld',
-                score: 59
+                score: 59,
+                methods: [
+                    { name: "Google" },
+                    { name: "BaiDu" },
+                    { name: "Bing" },
+                    { name: "Ask People" }
+                ],
+                isActive: true,
+                counter: 0,
+            },
+            methods: {
+                addCounter: function () {
+                    this.counter++;
+                }
             }
         })
     </script>
